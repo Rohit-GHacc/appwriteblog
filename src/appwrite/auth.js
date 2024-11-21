@@ -42,13 +42,17 @@ export class AuthService {
 
     async resetPassword(email) {
         try {
-            // Use Appwrite's createRecovery method for password reset
-            const response = await this.account.createRecovery(email);
+            // The URL to redirect the user to after they click the reset link
+            const recoveryUrl = "https://appwriteblog-ruby-xi.vercel.app/reset-password"; // Replace this with your actual URL
+    
+            // Call Appwrite's createRecovery method with the email and recovery URL
+            const response = await this.account.createRecovery(email, recoveryUrl);
             return response;  // Returns the response (email sent)
         } catch (error) {
             throw new Error(error.message);  // Propagate the error message
         }
     }
+    
 
     async updateUserProfile(data) {
         return await this.account.updatePrefs(data); // Modify this based on Appwrite's user structure
