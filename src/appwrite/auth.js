@@ -40,6 +40,16 @@ export class AuthService {
         }
     }
 
+    async resetPassword(email) {
+        try {
+            // Use Appwrite's createRecovery method for password reset
+            const response = await this.account.createRecovery(email);
+            return response;  // Returns the response (email sent)
+        } catch (error) {
+            throw new Error(error.message);  // Propagate the error message
+        }
+    }
+
     async updateUserProfile(data) {
         return await this.account.updatePrefs(data); // Modify this based on Appwrite's user structure
     }
