@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-
+import { useState } from 'react';
+const [abc,setAbc] = useState(0);
 const AiChatbot = () => {
     useEffect(() => {
         window.embeddedChatbotConfig = {
